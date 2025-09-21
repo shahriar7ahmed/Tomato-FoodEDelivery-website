@@ -1,36 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./FoodItem.css";
 import { assets } from "../../assets/assets";
-import { useState } from "react";
+import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
-  const [itemCount, setItemCount] = useState(0);
+  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
 
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img className="food-item-image" src={image} alt="" />
-        {!itemCount ? (
+        <img className="food-item-image" src={image} alt={name} />
+        {!cartItems[id] ? (
           <img
             className="add"
-            onClick={() => setItemCount((prev) => prev + 1)}
+            onClick={() => addToCart(id)}
             src={assets.add_icon_white}
-            alt=""
+            alt="Add to cart"
           />
         ) : (
           <div className="food-item-count">
             <img
-              onClick={() => setItemCount((prev) => prev - 1)}
+              onClick={() => removeFromCart(id)}
               className="count-icon"
               src={assets.remove_icon_red}
-              alt=""
+              alt="Remove from cart"
             />
-            <span>{itemCount}</span>
+            <span>{cartItems[id]}</span>
             <img
-              onClick={() => setItemCount((prev) => prev + 1)}
+              onClick={() => addToCart(id)}
               className="count-icon"
               src={assets.add_icon_green}
-              alt=""
+              alt="Add to cart"
             />
           </div>
         )}
@@ -38,7 +38,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p>
-          <img src={assets.rating_starts} alt="" />
+          <img src={assets.rating_starts} alt={`${name} rating`} />
         </div>
         <p className="food-item-desc">{description}</p>
         <p className="food-item-price">${price}</p>
