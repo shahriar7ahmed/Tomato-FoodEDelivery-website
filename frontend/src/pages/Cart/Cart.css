@@ -25,6 +25,15 @@
     background: transparent;
     color: tomato;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+.cart-items-item button:hover {
+    background-color: #fff4f2;
+    transform: scale(1.1);
 }
 .cart-bottom{
     margin-top: 80px;
@@ -54,6 +63,16 @@
     padding: 12px 0px;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.cart-total button:hover:not(:disabled) {
+    background-color: #e2452c;
+    transform: scale(1.02);
+}
+.cart-total button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 .cart-promocode{
     flex: 1;
@@ -82,6 +101,12 @@
     border: none;
     color: white;
     border-radius: 4px;
+}
+.cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #808080;
+    font-size: 18px;
 }
 @media (max-width:750px) {
     .cart-bottom{

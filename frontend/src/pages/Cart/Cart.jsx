@@ -1,4 +1,4 @@
-import React, { use, useContext, } from "react";
+import React, { useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ const Cart = () => {
   const { cartItems, food_list, removeFromCart,getTotalCartAmount } = useContext(StoreContext);
 
   const navigate = useNavigate();
+
+  const cartItemsList = food_list.filter((item) => cartItems[item._id] > 0);
 
   return (
     <div className="cart">
@@ -23,12 +25,16 @@ const Cart = () => {
         <br />
         <hr />
 
-        {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
+        {cartItemsList.length === 0 ? (
+          <div className="cart-empty">
+            <p>Your cart is empty. Add some delicious food items!</p>
+          </div>
+        ) : (
+          cartItemsList.map((item) => {
             return (
-              <div>
+              <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                  <img src={item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
@@ -38,8 +44,8 @@ const Cart = () => {
                 <hr />
               </div>
             );
-          }
-        })}
+          })
+        )}
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
@@ -60,7 +66,12 @@ const Cart = () => {
               <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
             </div>
           </div>
-          <button onClick={() => navigate("/order")}>Proceed to Checkout</button>
+          <button 
+            onClick={() => navigate("/order")}
+            disabled={cartItemsList.length === 0}
+          >
+            Proceed to Checkout
+          </button>
         </div>
         <div className="cart-promocode">
           <div>

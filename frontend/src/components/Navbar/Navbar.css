@@ -53,7 +53,7 @@
 }
 
 @media (max-width:1050px) {
-    .navbar .logo{
+    .Navbar .logo{
         width: 140px;
     } 
     .navbar-menu{
@@ -71,7 +71,7 @@
     }
 }
 @media (max-width:900px) {
-    .navbar .logo{
+    .Navbar .logo{
         width: 120px;
     } 
     .navbar-menu{
