@@ -10,7 +10,6 @@
 
 1. **Build the project locally** (optional, for testing):
    ```bash
-   cd frontend
    npm install
    npm run build
    ```
@@ -21,9 +20,8 @@
    - Click "Add new site" → "Import an existing project"
    - Connect your Git repository (GitHub, GitLab, or Bitbucket)
    - Configure build settings:
-     - **Base directory**: `frontend`
      - **Build command**: `npm run build`
-     - **Publish directory**: `frontend/dist`
+     - **Publish directory**: `dist`
    - Click "Deploy site"
 
 ### Option 2: Deploy via Netlify CLI
@@ -38,9 +36,9 @@
    netlify login
    ```
 
-3. **Navigate to frontend directory**:
+3. **Navigate to project directory**:
    ```bash
-   cd frontend
+   cd Tomato-FoodEDelivery-website
    ```
 
 4. **Deploy**:
@@ -59,7 +57,7 @@ The `netlify.toml` file is already configured with:
 
 - The app uses React Router for client-side routing
 - All routes are configured to redirect to `index.html` for proper SPA behavior
-- Make sure your Netlify site is configured to use the `frontend` directory as the base directory
+- The project root is the base directory for deployment
 
 ## Environment Variables
 
