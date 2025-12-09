@@ -11,14 +11,31 @@
     max-width: 60%;
     color: #808080;
 }
+.explore-menu-list-container {
+    overflow: hidden;
+    margin: 20px 0px;
+    width: 100%;
+    position: relative;
+}
 .explore-menu-list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 30px;
     text-align: center;
-    margin: 20px 0px;
-    overflow-x: scroll;
+    width: fit-content;
+    animation: scroll-infinite 25s linear infinite;
+    will-change: transform;
+}
+.explore-menu-list:hover {
+    animation-play-state: paused;
+}
+@keyframes scroll-infinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% / 3));
+    }
 }
 .explore-menu-list::-webkit-scrollbar {
     display: none;
